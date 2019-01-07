@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="TH-th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <title>ตำราลับ</title>
+    <style>
+        a:link {
+              color: rgb(0, 0, 0);
+              text-decoration: none;
+            }
+      
+            a:visited {
+              color: rgb(0, 0, 0);
+              text-decoration: none;
+            }
+      
+            a:hover {
+              color:rgb(250, 209, 28);
+              text-decoration: none;
+            }
+    </style>
+</head>
+
+<body class="bg-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-9">
+                <div class="text-center">
+                    <img src="pic/logo1.png" alt="ตำราลับ" width="400px">
+                </div>
+                <div class="container text-center block">
+                    <div class="row thai">
+                        <div class="col-sm-4">
+                            <a href="maet.php">
+                                <div class="text-right block">
+                                    <img src="pic/breakfast.png" alt="ของคาว" width="90px">
+                                    <p>สูตรอาหารคาว</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="sweets.php">
+                                <div class="text-center block">
+                                    <img src="pic/cupcake.png" alt="ของหวาน" width="90px">
+                                    <p>สูตรขนมหวาน</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="cocktail.php">
+                                <div class="text-left block">
+                                    <img src="pic/cocktail.png" alt="เครื่องดื่ม" width="90px">
+                                    <p>สูตรเครื่องดื่ม</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="text-center thai block">
+                    <a class="btn btn-light" role="button" href="!#" data-toggle="modal" data-target="#Modallogin">สำหรับผู้ดูแล</a>
+                </div>
+                <div class="fixed-bottom blockbut text-right thai">
+                    <h3>แหล่งรวม "ตำราอาหาร"</h3>
+                    <h3>จากทุกหน ทุกแห่ง<ins>ทั่วโลก</ins></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--login-->
+    <div class="modal fade" id="Modallogin">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header text-white bg-dark thai">
+                    <h4 class="modal-title">เข้าสู่ระบบ</h4>
+                    <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body thai" style="padding-top:25px;padding-bottom:25px;padding-left:85px;">
+                    <form id="formSignin">
+                        <div class="form-group">
+                            <label>ชื่อผู้ใช้ :</label>
+                            <input type="text" class="form-control col-md-10" id="Username" name="Username" placeholder="กรุณาใส่ Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">รหัสผ่าน :</label>
+                            <input type="password" class="form-control col-md-10" id="Password" name="Password"
+                                placeholder="กรุณาใส่ Password">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="Role" name="Role">
+                            <label class="form-check-label" for="Role">ฉันเป็นผู้ดูแลระบบ</label>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="signinButton" class="btn btn-warning">เข้าสู่ระบบ</button>
+                    </form>
+                </div>
+
+                <div class="modal-footer bg-dark"></div>
+
+            </div>
+        </div>
+    </div>
+    <!---->
+</body>
+<script>
+    $(`#signinButton`).click(() => {
+        const data = $(`#formSignin`).serializeArray();
+        $.ajax({
+            url: "check_login.php",
+            type: "post",
+            data: data,
+            success: (res) => {
+                if (res == "success_1") {
+                    window.location.href = "./admin_maneger.php"
+                } else if (res == "success_2") {
+                    window.location.href = "./show_maet.php"
+                } else {
+                    alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง")
+                }
+            }
+        })
+    })
+</script>
+
+</html>

@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt');
+
+.thai {
+    font-family: 'Prompt', sans-serif;
+}
+
+.bg-body {
+    background-color: #f5f2e9;
+}
+
+.block {
+    margin-top: 4%;
+}
+
+.blockbut {
+    margin-bottom: 20%;
+    margin-right: 3%;
+}
+
+.box {
+    margin-top: 5%;
+}
